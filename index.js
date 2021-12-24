@@ -143,6 +143,7 @@ async function run() {
       const cursor = await usersCollection.insertOne(user);
       res.send(cursor);
     });
+
     app.get("/users/:email", async (req, res) => {
       const email = req.params.email;
       const query = { email: email };
