@@ -46,7 +46,7 @@ async function run() {
       console.log(req.body);
       const eventName = req.body.eventName;
       const price = req.body.price;
-      const hour = req.body.hour;
+      const description = req.body.description;
       const image = req.files.image;
       const picData = image.data;
       const encodedPic = picData.toString("base64");
@@ -54,7 +54,7 @@ async function run() {
       const categories = {
         eventName,
         price,
-        hour,
+        description,
         image: imageBuffer,
       };
       const result = await categoriesCollection.insertOne(categories);
@@ -143,7 +143,6 @@ async function run() {
       const cursor = await usersCollection.insertOne(user);
       res.send(cursor);
     });
-
     app.get("/users/:email", async (req, res) => {
       const email = req.params.email;
       const query = { email: email };
